@@ -41,7 +41,7 @@ public LocationResource(){
 
 
     DeSerializer deSerializer = new DeSerializer();
-    //http://localhost:8080/Isolation_API-1.0-SaNAPSHOT/api/resources/locations/getlocations
+    //http://localhost:8080/Isolation_API-1.0-SaNAPSHOT/api/resources/laocations/getlocations
 
 
     @GET
