@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Isolation_APITest:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Isolation_APITest</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Isolation_APITest-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Isolation_APITest:war exploded" />
+    </root>
+  </artifact>
+</component>
