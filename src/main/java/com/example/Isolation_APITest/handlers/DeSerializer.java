@@ -8,13 +8,13 @@ import java.util.List;
 
 public class DeSerializer {
 
-    public static List<Location> DeserializeLocations(List<String> serializedLocations){
+    public static List<Location> DeserializeLocations(String serializedLocations){
         Gson gson = new Gson();
         List<Location> locations = new ArrayList<Location>();
-        for (String sLocations: serializedLocations) {
-            Location location = gson.fromJson(sLocations, Location.class);
-            locations.add(location);
-        }
+
+
+            locations.add(gson.fromJson(serializedLocations, Location.class));
+
         return locations;
 
     }

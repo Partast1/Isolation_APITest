@@ -17,16 +17,10 @@ public class PlaceDAOImp implements PlaceDao {
     public List<Location> getLocations() {
 
 
-//        apiLocations.add(new Location(55.545545, 35.353535));
-//        apiLocations.add(new Location(23.414141, 89.131315));
-//        apiLocations.add(new Location(23.232323, 81.123564));
-//        return apiLocations;
-
-
         ServerHandler sHandler = new ServerHandler();
         DeSerializer deserializer = new DeSerializer();
 
-        List<String> sLocations = new ArrayList<String>();
+        String sLocations = null;
         List<Location> templocations = new ArrayList<>();
 
         try {

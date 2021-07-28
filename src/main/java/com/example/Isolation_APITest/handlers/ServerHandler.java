@@ -1,24 +1,56 @@
 package com.example.Isolation_APITest.handlers;
 
-import com.example.Isolation_Server.Services.LocationService;
+import Services.LocationService;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class ServerHandler {
-    List<String> deserializedLocations = new ArrayList<String>();
+public  class ServerHandler implements Runnable {
+//    CustomClassLoader<LocationService> customClassLoader = new CustomClassLoader<LocationService>();
 
-    public List<String> getLocations(){
 
-        LocationService lService = new LocationService();
 
+
+
+
+        String deserializedLocations;
+    public  String getLocations(){
         try {
-            deserializedLocations = lService.GetSerializedLocations();}
-        catch (Exception e){}
-        finally{return deserializedLocations;}
+            LocationService locationService;
+
+            locationService = (LocationService) Class.forName("Services.LocationService").newInstance();
+            System.out.println("test " + locationService.toString());
+
+//            locationService = customClassLoader.LoadClass("C:\\Users\\asdf\\source\\repos\\Java\\Isolation_Backend\\out\\artifacts\\Isolation_Backend_jar",
+//                    "com.example.Isolation_Backend",
+//                    LocationService.class);
+
+
+//            Class.forName("Services.LocationService");
+
+             deserializedLocations = locationService.GetSerializedLocations();
+
+
+//            Class.forName("Services.LocationService").newInstance();
+
+        }catch (ClassNotFoundException e)
+        {System.out.println(e);} catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        return deserializedLocations;
+
+
+
+
+
 
 
     }
 
 
+
+    @Override
+    public void run() {
+
+    }
 }

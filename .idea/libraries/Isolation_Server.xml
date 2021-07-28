@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Isolation_Server">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../Isolation_Server/out/artifacts/Isolation_Server_jar/Isolation_Server.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

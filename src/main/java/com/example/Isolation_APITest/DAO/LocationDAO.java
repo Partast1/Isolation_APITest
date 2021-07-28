@@ -14,10 +14,11 @@ public class LocationDAO {
 
 
     public List<Location> getLocations() {
-        ServerHandler sHandler = new ServerHandler();
+        ServerHandler sHandler = null;
+        sHandler = new ServerHandler();
         DeSerializer deserializer = new DeSerializer();
 
-        List<String> sLocations = new ArrayList<String>();
+        String sLocations = null;
         List<Location> locations = new ArrayList<>();
 
         try {

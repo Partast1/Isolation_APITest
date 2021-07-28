@@ -1,8 +1,10 @@
 package com.example.Isolation_APITest.resources;
 
 import com.example.Isolation_APITest.DAOImplementations.PlaceDAOImp;
+import com.example.Isolation_APITest.handlers.CustomClassLoader;
 import com.example.Isolation_APITest.handlers.DeSerializer;
 import com.example.Isolation_APITest.handlers.ServerHandler;
+import com.example.Isolation_APITest.handlers.dbHandlerTest;
 import com.example.Isolation_APITest.models.Location;
 
 import javax.ws.rs.core.Response;
@@ -10,6 +12,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -20,10 +24,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws IOException, SQLException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+        PlaceDAOImp place = new PlaceDAOImp();
+        List<Location> locations = new ArrayList<>();
+        locations = place.getLocations();
 
-        sendGetRequest();
 
+        String serializedLocation = null;
+        ServerHandler handler = new ServerHandler();
+        serializedLocation = handler.getLocations();
+        System.out.println("Locations" + serializedLocation);
+
+
+        CustomClassLoader customClassLoader = new CustomClassLoader();
+//        Class<?> c = customClassLoader.findClass("com.concretepage.lang.Test");
+//        Object ob = c.newInstance();
+//        Method md = c.getMethod("show");
+//        md.invoke(ob);
+//
+//       System.out.println(customClassLoader.findClass("LocationService")) ;
+
+//
+//        for (Location loc: locations){
+//            System.out.println("Latitide" + loc.getLatitude());
+//        }
 
 //
 //        // Create a neat value object to hold the URL
@@ -57,33 +81,7 @@ public class Main {
 
     }
 
-    public static void sendGetRequest(){
-        try {
-            URL url = new URL("http://localhost/Isolation_Server-1.0-SNAPSHOT/location-servlet");
-            HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
-            httpURLConnection.setRequestMethod("GET");
 
-            //adding header
-            httpURLConnection.setRequestProperty("Auth","Token");
-            httpURLConnection.setRequestProperty("Data1","Value1");
-
-            String line="";
-            InputStreamReader inputStreamReader=new InputStreamReader(httpURLConnection.getInputStream());
-            BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
-            StringBuilder response=new StringBuilder();
-            while ((line=bufferedReader.readLine())!=null){
-                response.append(line);
-            }
-            bufferedReader.close();
-            DeSerializer deserializer = new DeSerializer();
-
-            System.out.println("Response : "+response.toString());
-
-        }
-        catch (Exception e){
-            System.out.println("Error in Making Get Request");
-        }
-    }
 
     public void locationTester(){
 
